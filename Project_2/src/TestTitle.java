@@ -199,6 +199,8 @@ public class TestTitle {
       String actualErrorMessage = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
       String expectedErrorMessage = "Invalid email or password";
       Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message not displayed for invalid login.");
+      
+      System.out.println("Error message displayed for invalid login.");
   }
 	
 	@Test
@@ -219,6 +221,7 @@ public class TestTitle {
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = "https://cinesync-v2-stg.layoutindex.dev/";
         Assert.assertEquals(actualUrl, expectedUrl, "Login was not successful.");
+        System.out.println("Login was successful.");
     }
     
 
