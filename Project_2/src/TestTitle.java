@@ -61,7 +61,7 @@ public class TestTitle {
 		System.out.println("Ticketing Page title is as expected");
         
 	}
-
+	
 	@Test
 	public void f3() {
         
@@ -78,6 +78,7 @@ public class TestTitle {
 		System.out.println("Login Page title is as expected");
         
 	}
+	
 	
 	@Test
 	public void f4() {
@@ -173,30 +174,59 @@ public class TestTitle {
         btnTicket.click();
 
         String actualTitle =  driver.getTitle();
-		String expectedtitle = "About";
+		String expectedtitle = "About YourCinema | Buy Cinema Tickets Online";
 
 		Assert.assertEquals(actualTitle, expectedtitle, "About Page title is not as expected.");
 	
 		System.out.println("About Page title is as expected");
         
 	}
+	
+	//Test login function
 	
 	@Test
-	public void f10() {
-        
-		//Test Login page title
+  public void testInvalidLogin() {
+      // Enter invalid login credentials
+		WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
+        btnTicket.click();
 		
-        WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item about_us ']"));
-        btnTicket.click(); 
+        driver.findElement(By.id("loginEmail")).sendKeys("an824@gmail.com");
+        driver.findElement(By.id("loginPassword")).sendKeys("Asd123");
+      // Click on the login button
+        driver.findElement(By.xpath("//button[@class='btn btn-custom btn-pink w-100 btn-text-center']")).click();
 
-        String actualTitle =  driver.getTitle();
-		String expectedtitle = "About";
-
-		Assert.assertEquals(actualTitle, expectedtitle, "About Page title is not as expected.");
+      // Verify an error message is displayed for invalid credentials
+      String actualErrorMessage = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
+      String expectedErrorMessage = "Invalid email or password";
+      Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message not displayed for invalid login.");
+  }
 	
-		System.out.println("About Page title is as expected");
+	@Test
+    public void testValidLogin() {
+        // Enter valid login credentials
+		
+		WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
+        btnTicket.click();
+		
+        driver.findElement(By.id("loginEmail")).sendKeys("an82334@gmail.com");
+        driver.findElement(By.id("loginPassword")).sendKeys("Asd123");
         
-	}
+
+        // Click on the login button
+        driver.findElement(By.xpath("//button[@class='btn btn-custom btn-pink w-100 btn-text-center']")).click();
+
+        // Verify the login was successful by checking the redirected URL
+        String actualUrl = driver.getCurrentUrl();
+        String expectedUrl = "https://cinesync-v2-stg.layoutindex.dev/";
+        Assert.assertEquals(actualUrl, expectedUrl, "Login was not successful.");
+    }
+    
+
+//    
+
+	
+	
+	
 	@AfterClass
 	public void afterMethod() {
 		System.out.println("Finished Test On Chrome Browser");
