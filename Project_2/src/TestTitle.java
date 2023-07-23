@@ -187,8 +187,8 @@ public class TestTitle {
 	@Test
   public void testInvalidLogin() {
       // Enter invalid login credentials
-		WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
-        btnTicket.click();
+		WebElement btnlogin = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
+		btnlogin.click();
 		
         driver.findElement(By.id("loginEmail")).sendKeys("an824@gmail.com");
         driver.findElement(By.id("loginPassword")).sendKeys("Asd123");
@@ -207,8 +207,8 @@ public class TestTitle {
     public void testValidLogin() {
         // Enter valid login credentials
 		
-		WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
-        btnTicket.click();
+		WebElement btnlogin = driver.findElement(By.xpath("//li[@class='nav-item loginBtn']"));
+		btnlogin.click();
 		
         driver.findElement(By.id("loginEmail")).sendKeys("an82334@gmail.com");
         driver.findElement(By.id("loginPassword")).sendKeys("Asd123");
@@ -223,9 +223,17 @@ public class TestTitle {
         Assert.assertEquals(actualUrl, expectedUrl, "Login was not successful.");
         System.out.println("Login was successful.");
     }
-    
-
-//    
+	
+	//Test Buy ticket function
+    @Test
+    public void testBuyticketfunction() {
+    	
+    	WebElement btnTicket = driver.findElement(By.xpath("//li[@class='nav-item buyTicketBtn']"));
+        btnTicket.click();
+        
+        //Should
+    	
+    }
 
 	
 	
