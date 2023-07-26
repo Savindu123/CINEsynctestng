@@ -6,8 +6,7 @@
       <class name="TestTitle">
         <methods>
           <include name="afterMethod"/>
-          <include name="testInvalidLogin"/>
-          <include name="testValidLogin"/>
+          <include name="homepageTitle"/>
           <include name="beforeMethod"/>
         </methods>
       </class> <!-- TestTitle -->
